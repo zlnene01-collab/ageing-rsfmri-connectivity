@@ -16,6 +16,8 @@ Do younger and older adults show differences in selected resting-state brain net
 
 The project will use **OpenNeuro ds003592**, a neurocognitive ageing dataset that includes younger and older healthy adults.
 
+Dataset link: https://openneuro.org/datasets/ds003592/versions/1.0.13
+
 The dataset includes:
 
 * Structural MRI
