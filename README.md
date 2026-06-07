@@ -104,6 +104,20 @@ Possible analyses include:
 
 Because this is a small learning-focused project, the results will be interpreted cautiously.
 
+## Updated Analysis Plan
+
+Based on feedback from Prof. Joshua Goh, I will focus on the fMRIPrep + Nilearn atlas-based functional connectivity route. This approach is more feasible within the current project timeline than an ICA-based analysis.
+
+The planned workflow is:
+
+1. Select a small number of younger and older adult participants from OpenNeuro ds003592.
+2. Check whether each selected participant has T1w anatomical MRI and resting-state fMRI data.
+3. Use fMRIPrep outputs if available, or ask the fMRI pod/TA about the simplest preprocessing option for a small subset.
+4. Use Nilearn and an atlas to extract regional time series.
+5. Compute functional connectivity matrices using correlation.
+6. Compare selected resting-state networks between younger and older adults.
+7. Start with 1 young and 1 older participant, then expand to around 5 + 5 if the workflow works.
+
 ## Expected Deliverables
 
 The expected final deliverables include:
