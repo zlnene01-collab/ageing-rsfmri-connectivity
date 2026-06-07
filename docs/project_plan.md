@@ -21,6 +21,17 @@ Start with:
 
 The first goal is to test whether the workflow is feasible.
 
+## Initial Test Subjects
+
+The first workflow test will use:
+
+| Participant | Group | Age | Sex | Site | Session |
+|---|---|---:|---|---|---|
+| sub-25 | Young adult | 23 | F | 1 | ses-1 |
+| sub-02 | Older adult | 73 | F | 1 | ses-1 |
+
+Both participants appear to have T1w anatomical MRI and multi-echo resting-state fMRI files.
+
 ## Expanded Scope
 
 If the initial workflow works, expand to approximately:
