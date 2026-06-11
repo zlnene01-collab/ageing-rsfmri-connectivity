@@ -1,227 +1,235 @@
-# Age-related Differences in Resting-State Brain Networks Using Open fMRI Data
+# Testing an fMRIPrep + Nilearn Workflow for PCC/DMN Resting-State Connectivity
 
 ## Project Overview
 
-This repository contains my Brainhack School final project on resting-state fMRI analysis and neurocognitive ageing.
+This repository contains my Brainhack School final project on testing a resting-state fMRI preprocessing and connectivity workflow using open neuroimaging data.
 
-The project aims to explore whether younger and older adults show differences in selected resting-state brain networks using open neuroimaging data. The main focus is to build a small, reproducible analysis workflow that directly works with fMRI data, including preprocessing documentation, feature extraction, visualization, and basic statistical comparison.
+The original project goal was to compare age-related differences in resting-state brain networks between younger and older adults. Based on instructor and TA feedback, I narrowed the scope to make the project more feasible within the final project timeline.
 
-This is a learning-focused project. The goal is not to claim a novel finding about ageing, but to gain hands-on experience with open fMRI data, resting-state network analysis, and reproducible neuroimaging workflows.
+The current focus is to test and document an fMRIPrep + Nilearn workflow using one subject first, with a planned downstream focus on the Default Mode Network (DMN) or posterior cingulate cortex (PCC) seed-based connectivity.
+
+Because fMRIPrep did not fully complete successfully on my local machine, the final project focuses on the preprocessing setup, HTML visual report, quality-control outputs, crash logs, troubleshooting process, and planned Nilearn analysis.
 
 ## Research Question
 
-Do younger and older adults show differences in selected resting-state brain networks, such as the Default Mode Network, Salience Network, and Executive Control Network?
+Can I build and test a beginner-friendly workflow to preprocess resting-state fMRI data and prepare for PCC/DMN-based functional connectivity analysis?
 
 ## Dataset
 
-The project will use **OpenNeuro ds003592**, a neurocognitive ageing dataset that includes younger and older healthy adults.
+This project uses OpenNeuro dataset ds003592, a neurocognitive ageing dataset with behavioral, structural, and multi-echo functional MRI measures.
 
 Dataset link: https://openneuro.org/datasets/ds003592/versions/1.0.13
 
-The dataset includes:
+Initial test subject:
 
-* Structural MRI
-* Multi-echo resting-state fMRI
-* Behavioral measures
-* Participant-level metadata
+* Subject: `sub-25`
+* Session: `ses-1`
+* Age group: young adult
+* Data used:
 
-The initial plan is to start with a small number of participants to test the workflow. If the workflow is successful, the analysis may be expanded to a small balanced group, such as approximately 5 younger adults and 5 older adults.
+  * 1 T1-weighted anatomical image
+  * 3 resting-state functional echo files
 
-Large neuroimaging files will not be uploaded to this GitHub repository. Raw data and derivatives will be stored locally.
+Large neuroimaging files are not uploaded to this repository. Raw BIDS data and large derivative files are stored locally.
 
 ## Project Motivation
 
-Ageing is associated with changes in cognition and brain function. Resting-state fMRI provides a way to examine spontaneous brain activity and functional relationships between brain regions when participants are not performing a specific task.
+Ageing is associated with changes in cognition and brain function. Resting-state fMRI can be used to study functional relationships between brain regions when participants are not performing a specific task.
 
-Previous research suggests that large-scale resting-state networks, such as the Default Mode Network, Salience Network, and Executive Control Network, may show age-related differences. This project uses open fMRI data to learn how these network-level differences can be explored through a small-scale analysis workflow.
+Large-scale resting-state networks such as the Default Mode Network may show age-related differences. The PCC is a key hub of the Default Mode Network, so focusing on PCC/DMN connectivity provides a more specific and feasible direction for a beginner-level project.
 
-## Planned Analysis Workflow
+## Narrowed Project Scope
 
-The planned workflow includes the following steps:
+The initial plan was to compare multiple resting-state networks across younger and older adults. However, fMRI preprocessing is computationally intensive, and fMRIPrep can take a long time or fail depending on the dataset and local environment.
 
-1. Inspect the dataset metadata and BIDS organization.
-2. Select one younger adult and one older adult as initial test cases.
-3. Check whether usable preprocessed derivatives are available.
-4. If needed and feasible, run or inspect fMRI preprocessing using fMRIPrep.
-5. Document preprocessing decisions and quality-control concerns.
-6. Extract resting-state network or ROI-level features.
-7. Compute functional connectivity or network-level summary measures.
-8. Compare younger and older adults using simple statistical analyses.
-9. Visualize group-level results using connectivity heatmaps, network summary plots, or group comparison figures.
-10. Document limitations and possible future directions.
+Based on feedback from Prof. Joshua Goh and TAs, I narrowed the project to:
 
-## Possible Analysis Routes
+1. Start with one subject first.
+2. Test the fMRIPrep workflow.
+3. Inspect the HTML visual report.
+4. Document preprocessing and crash-log troubleshooting.
+5. Plan a Nilearn PCC/DMN connectivity workflow for future analysis.
 
-I am currently considering two possible routes:
+Prof. Joshua Goh confirmed that the final presentation can focus on troubleshooting unresolved processing issues.
 
-### Route 1: fMRIPrep + Nilearn Atlas-Based Functional Connectivity
-
-This route would involve:
-
-* Using fMRIPrep outputs or a simple preprocessing workflow
-* Selecting an atlas, such as Schaefer or Harvard-Oxford
-* Extracting ROI-level time series
-* Computing ROI-to-ROI correlations
-* Creating connectivity matrices
-* Comparing network-level connectivity between younger and older adults
-
-### Route 2: fMRIPrep + ICA-Based Resting-State Network Analysis
-
-This route would involve:
-
-* Using preprocessed resting-state fMRI data
-* Running or learning an ICA-based analysis
-* Identifying selected networks such as DMN, Salience Network, and ECN
-* Comparing network measures between younger and older adults
-
-The final route will depend on feasibility, available support, and feedback from the fMRI pod / TAs.
-
-## Preprocessing Considerations
-
-Preprocessing choices can affect resting-state fMRI results. This project will be careful with:
-
-* Motion correction
-* Confound regression
-* Temporal filtering
-* Spatial normalization
-* Spatial smoothing
-* Quality control
-* Head motion differences between age groups
-
-Spatial smoothing will be considered carefully because it may artificially increase correlations between nearby voxel time series and influence functional connectivity estimates.
-
-## Statistical Plan
-
-The statistical analysis will start simple and remain exploratory.
-
-Possible analyses include:
-
-* Comparing network-level connectivity measures between younger and older adults
-* Two-sample t-tests if assumptions are reasonable
-* Mann-Whitney U tests if the data are not normally distributed
-* Linear regression models if covariates such as sex or mean motion need to be included
-* Multiple-comparison correction if many connections or networks are tested
-
-Because this is a small learning-focused project, the results will be interpreted cautiously.
-
-## Updated Analysis Plan
-
-Based on feedback from Prof. Joshua Goh, I will focus on the fMRIPrep + Nilearn atlas-based functional connectivity route. This approach is more feasible within the current project timeline than an ICA-based analysis.
-
-The planned workflow is:
-
-1. Select a small number of younger and older adult participants from OpenNeuro ds003592.
-2. Check whether each selected participant has T1w anatomical MRI and resting-state fMRI data.
-3. Use fMRIPrep outputs if available, or ask the fMRI pod/TA about the simplest preprocessing option for a small subset.
-4. Use Nilearn and an atlas to extract regional time series.
-5. Compute functional connectivity matrices using correlation.
-6. Compare selected resting-state networks between younger and older adults.
-7. Start with 1 young and 1 older participant, then expand to around 5 + 5 if the workflow works.
-
-## Expected Deliverables
-
-The expected final deliverables include:
-
-* A structured GitHub repository
-* Jupyter notebooks and/or Python scripts
-* Subject selection documentation
-* Preprocessing and quality-control notes
-* Functional connectivity matrices or network-level summaries
-* Visualizations of selected resting-state networks
-* Basic statistical comparison between younger and older adults
-* A web-based final project page
-* A final reflection on limitations and future directions
-
-## Repository Structure
+## Planned Workflow
 
 ```text
-.
-├── README.md
-├── docs/
-│   ├── project_plan.md
-│   ├── data_sources.md
-│   ├── preprocessing_notes.md
-│   └── feedback_questions.md
-├── notebooks/
-│   ├── 01_dataset_overview.ipynb
-│   ├── 02_subject_selection.ipynb
-│   ├── 03_preprocessing_qc.ipynb
-│   ├── 04_network_analysis.ipynb
-│   └── 05_group_statistics.ipynb
-├── scripts/
-│   ├── extract_confounds.py
-│   ├── extract_timeseries.py
-│   └── compute_connectivity.py
-├── figures/
-├── results/
-├── requirements.txt
-└── .gitignore
+BIDS raw data
+→ fMRIPrep preprocessing
+→ HTML report / quality control
+→ preprocessed BOLD + confounds
+→ Nilearn ROI or atlas time series extraction
+→ PCC or DMN connectivity analysis
 ```
 
-## Local Data Organization
+## What I Completed
 
-Raw neuroimaging data and large derivative files will not be committed to this repository.
+* Selected OpenNeuro dataset ds003592
+* Selected `sub-25/ses-1` as the first test subject
+* Prepared a small BIDS subset locally
+* Set up Docker on a MacBook Pro
+* Prepared the FreeSurfer license
+* Ran fMRIPrep version 25.2.5 using Docker
+* Generated an fMRIPrep HTML visual report
+* Viewed the HTML report through a local Python HTTP server
+* Inspected anatomical and functional quality-control figures
+* Generated partial derivatives, including:
 
-Suggested local paths:
+  * BOLD reference images
+  * brain masks
+  * motion correction transform files
+* Inspected crash logs from failed fMRIPrep runs
+* Reran fMRIPrep with `--fs-no-reconall` after a FreeSurfer/surface-related error
+* Created a planned Nilearn PCC/DMN connectivity script
 
-```text
-data/ds003592/              # OpenNeuro BIDS dataset, not committed
-derivatives/fmriprep/       # fMRIPrep derivatives, not committed
-derivatives/connectivity/   # extracted time series and connectivity outputs
-results/                    # statistical outputs and tables
-figures/                    # selected final figures
-```
+## fMRIPrep HTML Report
 
-## Setup
-
-A Python environment may be created with:
+The fMRIPrep HTML report was successfully generated and viewed in the browser using a local Python server:
 
 ```bash
-python -m venv .venv
-source .venv/bin/activate
-pip install -r requirements.txt
+cd derivatives/fmriprep
+python3 -m http.server 8080
 ```
 
-Planned Python packages include:
+The report was viewed at:
 
 ```text
-numpy
-pandas
-matplotlib
-seaborn
-nilearn
-nibabel
-scipy
-scikit-learn
-jupyter
+http://localhost:8080/sub-25.html
 ```
 
-Additional tools may include fMRIPrep, depending on preprocessing needs and computational feasibility.
+The report includes:
 
-## Current Questions for Feedback
+* Subject summary
+* Anatomical brain mask and tissue segmentation
+* Spatial normalization to `MNI152NLin2009cAsym`
+* Functional summary
+* Functional-anatomical coregistration
+* fMRIPrep command and version information
+* Methods boilerplate
 
-I am currently seeking feedback on the following questions:
+The report-level error section shows “No errors to report.” However, separate crash logs show that the full fMRIPrep workflow did not fully complete.
 
-1. Is fMRIPrep + Nilearn a reasonable workflow for a beginner-level resting-state fMRI project?
-2. Would ICA-based resting-state network analysis be more appropriate than atlas-based functional connectivity?
-3. Which atlas or template would be suitable for examining DMN, Salience Network, and Executive Control Network?
-4. How should spatial smoothing be handled in a correlation-based functional connectivity analysis?
-5. What statistical approach would be reasonable for comparing younger and older adults in a small sample?
-6. What preprocessing steps should be prioritized for a small individual final project?
+## Current fMRIPrep Status
+
+The full fMRIPrep workflow did not complete successfully.
+
+### Attempt 1: Full fMRIPrep run
+
+The first run failed during a FreeSurfer/surface-related step.
+
+The crash log showed a failure around:
+
+```text
+project_unproject
+surface-sphere-project-unproject
+```
+
+This appears to be related to a FreeSurfer/surface workflow issue in the local Docker/Mac environment.
+
+### Attempt 2: Rerun with `--fs-no-reconall`
+
+After the first failure, I reran fMRIPrep with:
+
+```bash
+--fs-no-reconall
+```
+
+This skipped FreeSurfer reconstruction and allowed the workflow to progress further.
+
+However, the second run failed later during the multi-echo T2SMap/S0map step. The crash log indicated that `S0map.nii.gz` was expected but not generated.
+
+Because of this, the final files required for Nilearn connectivity analysis were not generated:
+
+```text
+desc-preproc_bold.nii.gz
+desc-confounds_timeseries.tsv
+```
+
+## Key Outputs in This Repository
+
+```text
+docs/
+├── data_sources.md
+├── feedback_questions.md
+├── preprocessing_log.md
+├── project_plan.md
+├── subject_selection_sub-02.md
+└── subject_selection_sub-25.md
+
+scripts/
+├── 01_inspect_dataset.py
+├── 02_extract_timeseries.py
+├── 03_compute_connectivity.py
+└── nilearn_pcc_connectivity_plan.py
+
+results/
+└── partial_derivatives_summary.md
+
+figures/
+└── selected fMRIPrep HTML report screenshots
+
+reports/
+├── sub-25_fmriprep_html-report.html
+├── crashlog_01_full-fmriprep_freesurfer-project-unproject.txt
+└── crashlog_02_fs-no-reconall_multiecho-t2smap-s0map.txt
+```
+
+## Planned Nilearn Analysis
+
+The planned downstream analysis is documented in:
+
+```text
+scripts/nilearn_pcc_connectivity_plan.py
+```
+
+If fMRIPrep preprocessing is completed successfully later, the Nilearn workflow would:
+
+1. Load the preprocessed BOLD image.
+2. Load the confounds timeseries file.
+3. Define one ROI or network, likely PCC or DMN.
+4. Extract the ROI/network time series.
+5. Compute seed-based or atlas-based functional connectivity.
+
+The planned script is currently a workflow template because the required final fMRIPrep outputs were not generated.
+
+## What I Learned
+
+This project became a practical troubleshooting and workflow-building exercise. I learned that:
+
+* fMRI preprocessing can be computationally intensive and difficult to run locally.
+* Multi-echo fMRI data can introduce additional preprocessing complexity.
+* Starting with one subject is important before scaling up.
+* fMRIPrep HTML reports are useful for visual quality control.
+* Crash logs are important for identifying where a workflow failed.
+* The HTML report may show no report-level error even when separate crash logs indicate that the full workflow did not finish.
+* A focused ROI/network question is more feasible than a broad multi-network comparison for a short beginner-level project.
+
+## Limitations
+
+This project does not currently include a completed young-vs-older connectivity comparison.
+
+The main limitations are:
+
+* Only one subject was tested.
+* fMRIPrep did not fully complete.
+* Final preprocessed BOLD and confounds files were not generated.
+* Nilearn connectivity analysis remains a planned next step.
+* Results should not be interpreted as evidence for age-related brain connectivity differences.
+
+## Next Steps
+
+Future work should:
+
+1. Ask fMRIPrep-experienced TAs about the multi-echo T2SMap/S0map crash.
+2. Try preprocessing on a stronger Linux/HPC system if available.
+3. Consider simplifying the workflow or testing a single echo first.
+4. Once final fMRIPrep outputs are generated, run the Nilearn PCC/DMN connectivity workflow.
+5. Add an older comparison subject, such as `sub-02/ses-1`, after the workflow is stable.
+6. Expand cautiously to a small balanced sample only if preprocessing succeeds.
 
 ## Project Status
 
-This project is currently in the planning and setup stage.
+Current status: preprocessing workflow tested, HTML visual report generated, crash logs documented, and downstream Nilearn PCC/DMN connectivity workflow planned.
 
-The immediate goals are:
-
-* Create the GitHub repository
-* Post the project direction to the Brainhack School projects-2026 channel
-* Receive feedback from the fMRI pod / TAs
-* Inspect OpenNeuro ds003592 metadata
-* Select initial test participants
-* Decide on the most feasible analysis route
-
-## Notes
-
-This project is intended as a practical learning exercise in open fMRI data analysis. The analysis will be documented carefully, and limitations will be reported clearly.
+The final presentation will focus on the fMRIPrep setup, quality-control report, unresolved processing issues, troubleshooting process, and planned next steps.
