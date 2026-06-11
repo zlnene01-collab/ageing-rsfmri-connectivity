@@ -1,0 +1,34 @@
+Node: _project_unproject0
+Working directory: /work/fmriprep_25_2_wf/sub_25_ses_1_wf/anat_fit_wf/fsLR_reg_wf/project_unproject/mapflow/_project_unproject0
+
+Node inputs:
+
+sphere_in = /out/fmriprep/sub-25/ses-1/anat/sub-25_ses-1_hemi-L_space-fsaverage_desc-reg_sphere.surf.gii
+sphere_out = <undefined>
+sphere_project_to = /app/.pixi/envs/fmriprep/lib/python3.12/site-packages/smriprep/data/atlases/fs_L/fsaverage.L.sphere.164k_fs_L.surf.gii
+sphere_unproject_from = /app/.pixi/envs/fmriprep/lib/python3.12/site-packages/smriprep/data/atlases/fs_L/fs_L-to-fs_LR_fsaverage.L_LR.spherical_std.164k_fs_L.surf.gii
+
+Traceback (most recent call last):
+  File "/app/.pixi/envs/fmriprep/lib/python3.12/site-packages/nipype/pipeline/plugins/multiproc.py", line 67, in run_node
+    result["result"] = node.run(updatehash=updatehash)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/.pixi/envs/fmriprep/lib/python3.12/site-packages/nipype/pipeline/engine/nodes.py", line 525, in run
+    result = self._run_interface(execute=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/.pixi/envs/fmriprep/lib/python3.12/site-packages/nipype/pipeline/engine/nodes.py", line 643, in _run_interface
+    return self._run_command(execute)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/.pixi/envs/fmriprep/lib/python3.12/site-packages/nipype/pipeline/engine/nodes.py", line 769, in _run_command
+    raise NodeExecutionError(msg)
+nipype.pipeline.engine.nodes.NodeExecutionError: Exception raised while executing Node _project_unproject0.
+
+Cmdline:
+	wb_command -surface-sphere-project-unproject /out/fmriprep/sub-25/ses-1/anat/sub-25_ses-1_hemi-L_space-fsaverage_desc-reg_sphere.surf.gii /app/.pixi/envs/fmriprep/lib/python3.12/site-packages/smriprep/data/atlases/fs_L/fsaverage.L.sphere.164k_fs_L.surf.gii /app/.pixi/envs/fmriprep/lib/python3.12/site-packages/smriprep/data/atlases/fs_L/fs_L-to-fs_LR_fsaverage.L_LR.spherical_std.164k_fs_L.surf.gii sub-25_ses-1_hemi-L_space-fsaverage_desc-reg_sphere.surf_unprojected.surf.gii
+Stdout:
+
+Stderr:
+	OMP: Error #13: Assertion failure at kmp_affinity.cpp(981).
+	OMP: Hint Please submit a bug report with this message, compile and run commands used, and machine configuration info including native compiler and operating system versions. Faster response will be obtained by including all program sources. For information on submitting this issue, please see https://github.com/llvm/llvm-project/issues/.
+	Aborted
+Traceback:
+	RuntimeError: subprocess exited with code 134.

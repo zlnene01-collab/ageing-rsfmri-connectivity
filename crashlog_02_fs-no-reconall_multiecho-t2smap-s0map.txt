@@ -1,0 +1,57 @@
+Node: fmriprep_25_2_wf.sub_25_ses_1_wf.bold_ses_1_task_rest_echo_1_wf.bold_native_wf.bold_t2smap_wf.t2smap_node
+Working directory: /work/fmriprep_25_2_wf/sub_25_ses_1_wf/bold_ses_1_task_rest_echo_1_wf/bold_native_wf/bold_t2smap_wf/t2smap_node
+
+Node inputs:
+
+args = <undefined>
+echo_times = [0.0137, 0.03, 0.047]
+environ = {}
+fittype = curvefit
+in_files = <undefined>
+mask_file = <undefined>
+
+Traceback (most recent call last):
+  File "/app/.pixi/envs/fmriprep/lib/python3.12/site-packages/nipype/pipeline/plugins/multiproc.py", line 67, in run_node
+    result["result"] = node.run(updatehash=updatehash)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/.pixi/envs/fmriprep/lib/python3.12/site-packages/nipype/pipeline/engine/nodes.py", line 525, in run
+    result = self._run_interface(execute=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/.pixi/envs/fmriprep/lib/python3.12/site-packages/nipype/pipeline/engine/nodes.py", line 643, in _run_interface
+    return self._run_command(execute)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/app/.pixi/envs/fmriprep/lib/python3.12/site-packages/nipype/pipeline/engine/nodes.py", line 769, in _run_command
+    raise NodeExecutionError(msg)
+nipype.pipeline.engine.nodes.NodeExecutionError: Exception raised while executing Node t2smap_node.
+
+Cmdline:
+	t2smap -d /work/fmriprep_25_2_wf/sub_25_ses_1_wf/bold_ses_1_task_rest_echo_1_wf/bold_native_wf/_echoidx_0/boldref_bold/sub-25_ses-1_task-rest_echo-1_bold_tshift_xformresampled.nii.gz /work/fmriprep_25_2_wf/sub_25_ses_1_wf/bold_ses_1_task_rest_echo_1_wf/bold_native_wf/_echoidx_1/boldref_bold/sub-25_ses-1_task-rest_echo-2_bold_tshift_xformresampled.nii.gz /work/fmriprep_25_2_wf/sub_25_ses_1_wf/bold_ses_1_task_rest_echo_1_wf/bold_native_wf/_echoidx_2/boldref_bold/sub-25_ses-1_task-rest_echo-3_bold_tshift_xformresampled.nii.gz -e 13.700000000000001 30.0 47.0 --mask /work/fmriprep_25_2_wf/sub_25_ses_1_wf/bold_ses_1_task_rest_echo_1_wf/bold_native_wf/bold_t2smap_wf/dilate_mask/dilated_mask.nii.gz --fittype curvefit
+Stdout:
+
+Stderr:
+	OMP: Error #13: Assertion failure at kmp_affinity.cpp(981).
+	OMP: Hint Please submit a bug report with this message, compile and run commands used, and machine configuration info including native compiler and operating system versions. Faster response will be obtained by including all program sources. For information on submitting this issue, please see https://github.com/llvm/llvm-project/issues/.
+	Aborted
+Traceback:
+	Traceback (most recent call last):
+	  File "/app/.pixi/envs/fmriprep/lib/python3.12/site-packages/nipype/interfaces/base/core.py", line 457, in aggregate_outputs
+	    setattr(outputs, key, val)
+	  File "/app/.pixi/envs/fmriprep/lib/python3.12/site-packages/nipype/interfaces/base/traits_extension.py", line 325, in validate
+	    value = super().validate(objekt, name, value, return_pathlike=True)
+	            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+	  File "/app/.pixi/envs/fmriprep/lib/python3.12/site-packages/nipype/interfaces/base/traits_extension.py", line 135, in validate
+	    self.error(objekt, name, str(value))
+	  File "/app/.pixi/envs/fmriprep/lib/python3.12/site-packages/traits/base_trait_handler.py", line 74, in error
+	    raise TraitError(
+	traits.trait_errors.TraitError: The 's0_map' trait of a T2SMapOutputSpec instance must be a pathlike object or string representing an existing file, but a value of '/work/fmriprep_25_2_wf/sub_25_ses_1_wf/bold_ses_1_task_rest_echo_1_wf/bold_native_wf/bold_t2smap_wf/t2smap_node/S0map.nii.gz' <class 'str'> was specified.
+
+	During handling of the above exception, another exception occurred:
+
+	Traceback (most recent call last):
+	  File "/app/.pixi/envs/fmriprep/lib/python3.12/site-packages/nipype/interfaces/base/core.py", line 404, in run
+	    outputs = self.aggregate_outputs(runtime)
+	              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+	  File "/app/.pixi/envs/fmriprep/lib/python3.12/site-packages/nipype/interfaces/base/core.py", line 464, in aggregate_outputs
+	    raise FileNotFoundError(msg)
+	FileNotFoundError: No such file or directory '/work/fmriprep_25_2_wf/sub_25_ses_1_wf/bold_ses_1_task_rest_echo_1_wf/bold_native_wf/bold_t2smap_wf/t2smap_node/S0map.nii.gz' for output 's0_map' of a T2SMap interface
+
