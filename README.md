@@ -233,3 +233,29 @@ Future work should:
 Current status: preprocessing workflow tested, HTML visual report generated, crash logs documented, and downstream Nilearn PCC/DMN connectivity workflow planned.
 
 The final presentation will focus on the fMRIPrep setup, quality-control report, unresolved processing issues, troubleshooting process, and planned next steps.
+
+## Recent Progress: SPM Reorientation and Check Registration
+
+After the initial fMRIPrep workflow did not fully complete, I continued the project using an SPM-based preprocessing approach, following feedback from the course instructors and TA.
+
+To avoid carrying over earlier orientation issues, I returned to the raw unoriented T1w and fMRI files for `sub-25`. I manually adjusted only the T1w image in SPM, set the origin, and then applied the same reorientation to both the T1w image and the echo-2 fMRI image together. This followed the TA’s recommendation that the anatomical and functional images should be reoriented together using the same adjustment.
+
+I then reran Check Registration using:
+
+* `T1_raw_retry.nii,1`
+* `func_echo2_raw_retry.nii,1`
+
+The updated Check Registration result was reviewed by the TA and confirmed to look better. This represents a successful step forward in the manual SPM preprocessing workflow and provides a cleaner starting point for the next preprocessing steps.
+
+### Updated SPM Progress
+
+* Created clean retry copies from the raw unoriented files
+* Displayed the raw T1w image in SPM
+* Manually adjusted the T1w image orientation
+* Applied the same reorientation to both T1w and fMRI images
+* Reran Check Registration
+* Received TA confirmation that the updated result looked improved
+
+### Next Steps
+
+The next step is to confirm the appropriate preprocessing order for this test workflow, especially whether to proceed with Realign first or Slice Timing first for the echo-2 fMRI image. After this, the workflow can continue toward a basic SPM preprocessing pipeline and later PCC / Default Mode Network connectivity analysis.
